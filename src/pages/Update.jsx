@@ -16,6 +16,12 @@ const Update = () => {
                 .from("Posts")
                 .select()
                 .eq('id', id)
+            
+            if (data[0].author !== localStorage.getItem('uuid')) {
+                window.location = "/"
+                alert("You are not the author of this post")
+              
+            }
 
             setTitle(data[0].title);
             setBody(data[0].body);
@@ -24,6 +30,8 @@ const Update = () => {
         }
 
         fetchPost();
+
+        
     }, [id])
 
     const handleChangeTitle = (e) => {
